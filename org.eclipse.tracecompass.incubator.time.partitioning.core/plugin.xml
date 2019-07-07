@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.linuxtools.tmf.core.analysis">
+      <module
+            analysis_module="org.eclipse.tracecompass.incubator.internal.time.partitioning.xen.core.PartitionAnalysis"
+            automatic="true"
+            id="org.eclipse.tracecompass.incubator.internal.time.partitioning.core.PartitionAnalysis"
+            name="Xen Partitions">
+         <tracetype
+               class="org.eclipse.tracecompass.tmf.core.trace.TmfTrace">
+         </tracetype>
+      </module>
+      <module
+            analysis_module="org.eclipse.tracecompass.incubator.time.partitioning.core.cgroup.ContainerAnalysis"
+            id="org.eclipse.tracecompass.incubator.time.partitioning.core.cgroup.analysis"
+            name="Cgroup partitions">
+         <tracetype
+               class="org.eclipse.tracecompass.incubator.internal.virtual.machine.analysis.core.trace.VirtualMachineExperiment">
+         </tracetype>
+      </module>
+      <output
+            class="org.eclipse.tracecompass.tmf.ui.analysis.TmfAnalysisViewOutput"
+            id="org.eclipse.tracecompass.incubator.time.partitioning.core.cgroup.controlflow">
+         <analysisId
+               id="org.eclipse.tracecompass.incubator.time.partitioning.core.cgroup.analysis">
+         </analysisId>
+      </output>
+      <output
+            class="org.eclipse.tracecompass.tmf.ui.analysis.TmfAnalysisViewOutput"
+            id="org.eclipse.tracecompass.incubator.time.partitioning.ui.xenflow">
+         <analysisId
+               id="org.eclipse.tracecompass.incubator.internal.time.partitioning.core.PartitionAnalysis">
+         </analysisId>
+      </output>
+   </extension>
+   <extension
+         point="org.eclipse.tracecompass.tmf.core.dataprovider">
+      <dataProviderFactory
+            class="org.eclipse.tracecompass.incubator.internal.time.partitioning.xen.core.PartitionStatusDataProviderFactory"
+            id="org.eclipse.tracecompass.incubator.internal.time.partitioning.PartitionStatusDataProvider">
+      </dataProviderFactory>
+      <dataProviderFactory
+            class="org.eclipse.tracecompass.incubator.time.partitioning.core.cgroup.provider.CgroupDataProviderFactory"
+            id="org.eclipse.tracecompass.incubator.time.partitioning.core.cgroup.provider.CgroupDataProviderFactory">
+      </dataProviderFactory>
+   </extension>
+   <extension
+         name="Cgroup Partitions View"
+         point="org.eclipse.ui.views">
+      <view
+            category="org.eclipse.linuxtools.tmf.ui.views.category"
+            class="org.eclipse.tracecompass.incubator.time.partitioning.core.cgroup.provider.CgroupControlViewFilter"
+            id="org.eclipse.tracecompass.incubator.time.partitioning.core.cgroup.controlflow"
+            name="Cgroup Partition View"
+            restorable="true">
+      </view>
+   </extension>
+
+
+</plugin>
